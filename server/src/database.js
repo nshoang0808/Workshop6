@@ -244,6 +244,7 @@ function getFeedItemSync(feedItemId) {
   });
   return feedItem;
 }
+module.exports.getFeedItemSync = getFeedItemSync;
 /**
 * Get the feed data for a particular user.
 */
