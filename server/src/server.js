@@ -253,10 +253,10 @@ app.put('/feeditem/:feeditemid/commentthread/:commentidx/likelist/:userid', func
   if (fromUser === userId) {
     var feedItem = readDocument('feedItems', feedItemId);
     // Add to likeCounter if not already present.
-    if (feedItem.comments[commentIdx].likeCounter.indexOf(userId) === -1) {
+    //if (feedItem.comments[commentIdx].likeCounter.indexOf(userId) === -1) {
       feedItem.comments[commentIdx].likeCounter.push(userId);
       writeDocument('feedItems', feedItem);
-    }
+    //}
     // Return a resolved version of the likeCounter
     res.send(feedItem.comments[commentIdx].likeCounter.map((userId) =>
     readDocument('users', userId)));
@@ -278,7 +278,7 @@ app.delete('/feeditem/:feeditemid/commentthread/:commentidx/likelist/:userid', f
     var likeIndex = feedItem.comments[commentIdx].likeCounter.indexOf(userId);
     // Remove from likeCounter if present
     if (likeIndex !== -1) {
-      feedItem.likeCounter.splice(likeIndex, 1);
+      feedItem.comments[commentIdx].likeCounter.splice(likeIndex, 1);
       writeDocument('feedItems', feedItem);
     }
     // Return a resolved version of the likeCounter
